@@ -10,4 +10,7 @@ public record EstatisticaResponse(Long count,
     public EstatisticaResponse(Estatistica estatistica){
         this(estatistica.getCount(), estatistica.getSum(), estatistica.getAvg(), estatistica.getMin(), estatistica.getMax());
     }
+    public EstatisticaResponse(){
+        this(0L, 0.0, 0.0, 0.0, 0.0);
+    }
 }

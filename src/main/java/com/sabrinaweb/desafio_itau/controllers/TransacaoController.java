@@ -1,7 +1,6 @@
 package com.sabrinaweb.desafio_itau.controllers;
 
 import com.sabrinaweb.desafio_itau.dto.TransacaoRequest;
-import com.sabrinaweb.desafio_itau.services.EstatisticaService;
 import com.sabrinaweb.desafio_itau.services.TransacaoService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -12,21 +11,21 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/transacao")
 public class TransacaoController {
 
-    private TransacaoService transacaoService;
+    private TransacaoService service;
 
     public TransacaoController(TransacaoService transacaoService){
-        this.transacaoService = transacaoService;
+        this.service = transacaoService;
     }
 
     @PostMapping
     public ResponseEntity<Void> create(@Valid @RequestBody TransacaoRequest request){
-        transacaoService.create(request);
+        service.create(request);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @DeleteMapping
     public ResponseEntity<Void> delete(){
-        transacaoService.delete();
+        service.delete();
         return ResponseEntity.ok().build();
     }
 
