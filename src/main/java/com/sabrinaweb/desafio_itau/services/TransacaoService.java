@@ -27,4 +27,8 @@ public class TransacaoService {
     public void delete(){
         transacoes.clear();
     }
+
+    public List<Transacao> getTransacoes() {
+        return transacoes;
+    }
 }
