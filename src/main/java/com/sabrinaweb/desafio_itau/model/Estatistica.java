@@ -3,47 +3,40 @@ package com.sabrinaweb.desafio_itau.model;
 import java.util.DoubleSummaryStatistics;
 
 public class Estatistica {
-    private int count;
+    private long count;
     private double sum;
     private double avg;
     private double min;
+    private double max;
 
-    public Estatistica(int count, double sum, double avg, double min){
-        this.count = count;
-        this.sum = sum;
-        this.avg = avg;
-        this.min = min;
+    public Estatistica(DoubleSummaryStatistics summaryStatistics) {
+        this.count = summaryStatistics.getCount();
+        this.sum = summaryStatistics.getSum();
+        this.avg = summaryStatistics.getAverage();
+        this.min = summaryStatistics.getMin();
+        this.max = summaryStatistics.getMax();
     }
 
-    public int getCount() {
+    public Estatistica() {
+    }
+
+    public long getCount() {
         return count;
     }
 
-    public void setCount(int count) {
-        this.count = count;
+    public double getMax() {
+        return max;
     }
 
     public double getSum() {
         return sum;
     }
 
-    public void setSum(double sum) {
-        this.sum = sum;
-    }
-
     public double getAvg() {
         return avg;
     }
 
-    public void setAvg(double avg) {
-        this.avg = avg;
-    }
-
     public double getMin() {
         return min;
-    }
-
-    public void setMin(double min) {
-        this.min = min;
     }
 }
