@@ -19,11 +19,6 @@ public class EstatisticaService {
     }
 
     public EstatisticaResponse estatisticasTransacoes(){
-
-        if (service.getTransacoes().isEmpty()){
-            return new EstatisticaResponse();
-        }
-
         DoubleSummaryStatistics summaryStatistics = service.getTransacoes().stream().filter(t -> OffsetDateTime.now().minusSeconds(60).isBefore(t.getDataHora()))
                 .map(Transacao::getValor)
                 .collect(Collectors.summarizingDouble(Double::doubleValue));

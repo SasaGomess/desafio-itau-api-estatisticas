@@ -1,6 +1,7 @@
 package com.sabrinaweb.desafio_itau.model;
 
 import java.util.DoubleSummaryStatistics;
+import java.util.Optional;
 
 public class Estatistica {
     private long count;
@@ -13,8 +14,17 @@ public class Estatistica {
         this.count = summaryStatistics.getCount();
         this.sum = summaryStatistics.getSum();
         this.avg = summaryStatistics.getAverage();
-        this.min = summaryStatistics.getMin();
-        this.max = summaryStatistics.getMax();
+
+        if (String.valueOf(summaryStatistics.getMin()).contains("-Infi") || String.valueOf(summaryStatistics.getMin()).contains("Infi")){
+            this.min = 0.0;
+        }else {
+            this.min = summaryStatistics.getMin();
+        }
+        if (String.valueOf(summaryStatistics.getMax()).contains("-Infi") || String.valueOf(summaryStatistics.getMax()).contains("Infi")){
+            this.max = 0.0;
+        }else {
+            this.max = summaryStatistics.getMax();
+        }
     }
 
     public Estatistica() {
