@@ -3,7 +3,7 @@ package com.sabrinaweb.desafio_itau.model;
 import java.time.OffsetDateTime;
 
 public class Transacao {
-    private Double valor;
+    private double valor;
     private OffsetDateTime dataHora;
 
     public Transacao(Double valor, OffsetDateTime dataHora){

@@ -1,7 +1,8 @@
 package com.sabrinaweb.desafio_itau.dto;
 
-public record EstatisticaResponse(Integer count,
+public record EstatisticaResponse(Long count,
                                   Double sum,
                                   Double avg,
-                                  Double min) {
+                                  Double min,
+                                  Double max) {
 }
