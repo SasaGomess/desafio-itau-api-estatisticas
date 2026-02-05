@@ -1,16 +1,51 @@
 package com.sabrinaweb.desafio_itau.dto;
 
-import com.sabrinaweb.desafio_itau.model.Estatistica;
+import java.util.DoubleSummaryStatistics;
 
-public record EstatisticaResponse(Long count,
-                                  Double sum,
-                                  Double avg,
-                                  Double min,
-                                  Double max) {
-    public EstatisticaResponse(Estatistica estatistica){
-        this(estatistica.getCount(), estatistica.getSum(), estatistica.getAvg(), estatistica.getMin(), estatistica.getMax());
+public class EstatisticaResponse {
+    private long count;
+    private double sum;
+    private double avg;
+    private double min;
+    private double max;
+
+    public EstatisticaResponse(DoubleSummaryStatistics summaryStatistics) {
+        this.count = summaryStatistics.getCount();
+        this.sum = summaryStatistics.getSum();
+        this.avg = summaryStatistics.getAverage();
+
+        if (String.valueOf(summaryStatistics.getMin()).contains("-Infi") || String.valueOf(summaryStatistics.getMin()).contains("Infi")){
+            this.min = 0.0;
+        }else {
+            this.min = summaryStatistics.getMin();
+        }
+        if (String.valueOf(summaryStatistics.getMax()).contains("-Infi") || String.valueOf(summaryStatistics.getMax()).contains("Infi")){
+            this.max = 0.0;
+        }else {
+            this.max = summaryStatistics.getMax();
+        }
     }
-    public EstatisticaResponse(){
-        this(0L, 0.0, 0.0, 0.0, 0.0);
+
+    public EstatisticaResponse() {
+    }
+
+    public long getCount() {
+        return count;
+    }
+
+    public double getMax() {
+        return max;
+    }
+
+    public double getSum() {
+        return sum;
+    }
+
+    public double getAvg() {
+        return avg;
+    }
+
+    public double getMin() {
+        return min;
     }
 }

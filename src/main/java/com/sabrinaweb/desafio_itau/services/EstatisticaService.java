@@ -1,14 +1,11 @@
 package com.sabrinaweb.desafio_itau.services;
 
 import com.sabrinaweb.desafio_itau.dto.EstatisticaResponse;
-import com.sabrinaweb.desafio_itau.model.Estatistica;
 import com.sabrinaweb.desafio_itau.model.Transacao;
 import org.springframework.stereotype.Service;
-
 import java.time.OffsetDateTime;
-import java.time.OffsetTime;
 import java.util.DoubleSummaryStatistics;
-import java.util.stream.Collectors;
+
 
 @Service
 public class EstatisticaService {
@@ -20,11 +17,9 @@ public class EstatisticaService {
 
     public EstatisticaResponse estatisticasTransacoes(){
         DoubleSummaryStatistics summaryStatistics = service.getTransacoes().stream().filter(t -> OffsetDateTime.now().minusSeconds(60).isBefore(t.getDataHora()))
-                .map(Transacao::getValor)
-                .collect(Collectors.summarizingDouble(Double::doubleValue));
+                .mapToDouble(Transacao::getValor)
+                .summaryStatistics();
 
-        Estatistica estatistica = new Estatistica(summaryStatistics);
-
-        return new EstatisticaResponse(estatistica);
+        return new EstatisticaResponse(summaryStatistics);
     }
 }
